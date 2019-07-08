@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: NewLearningBrain
   m_EditorClassIdentifier: 
   brainParameters:
-    vectorObservationSize: 5
+    vectorObservationSize: 9
     numStackedVectorObservations: 1
     vectorActionSize: 05000000
     cameraResolutions: []
     vectorActionDescriptions:
     - 
     vectorActionSpaceType: 0
-  model: {fileID: 0}
+  model: {fileID: 5022602860645237092, guid: 1b1be89208e2e3641a45add252d9f434, type: 3}
   inferenceDevice: 0

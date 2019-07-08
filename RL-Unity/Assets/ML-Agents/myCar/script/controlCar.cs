@@ -10,7 +10,8 @@ public class controlCar : MonoBehaviour
     //float maxMin = 2.5f;
     public int collisionflag = 0;
     public Uimanager ui;
-    /*public */EnemyAppear E;
+    EnemyAppear E;
+    List<int> index;
     
     // Start is called before the first frame update
     void Start()
@@ -31,12 +32,15 @@ public class controlCar : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             collisionflag = 1;
+            var size = E._instance.Count;
             for (int i = 0; i< E._instance.Count; i++)
             {
-                Destroy(E._instance[i]);
-                //E._instance.RemoveAt(i);
+                    Destroy(E._instance[i]);
+                    //E._instance.RemoveAt(i);
             }
 
+            E._instance.RemoveRange(0,size);
+            Debug.Log("we are"+E._instance.Count);
         }
 
     }

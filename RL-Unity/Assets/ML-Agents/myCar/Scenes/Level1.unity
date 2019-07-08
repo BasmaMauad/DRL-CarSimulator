@@ -577,7 +577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605750194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: -6.17, z: 0}
+  m_LocalPosition: {x: -0.15, y: -7.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -925,9 +925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broadcastHub:
-    broadcastingBrains:
-    - {fileID: 11400000, guid: 8e7f61a5197a06c43aafbc43d133c6af, type: 2}
-    - {fileID: 11400000, guid: 23e23cebecdb34941b3872469b85449b, type: 2}
+    broadcastingBrains: []
     _brainsToControl:
     - {fileID: 11400000, guid: 8e7f61a5197a06c43aafbc43d133c6af, type: 2}
   maxSteps: 0

@@ -3,55 +3,86 @@ using MLAgents;
 
 public class myAgent : Agent
 {
-    private Rigidbody2D carBody;
-    // Start is called before the first frame update
+    //private Rigidbody2D carBody;
     public controlCar cc;
-    //public GameObject enemy1;
-    //public GameObject enemy2;
-    //public GameObject enemy3;
-    Vector3 old_position, pos/*,pos_enemy1,pos_enemy2,pos_enemy3*/;
+    
+    Vector3 old_position, pos;
     Quaternion old_rotation;
     EnemyAppear EA;
+
 
     void Start()
     {
         // Set Starting location of car
         old_position = gameObject.transform.position;
         old_rotation = gameObject.transform.rotation;
-
-        //Set Starting location of enemies
-       // pos_enemy1 = enemy1.transform.position;
-        //pos_enemy2 = enemy2.transform.position;
-        //pos_enemy3 = enemy3.transform.position;
-
+        
         pos = old_position;
-        carBody = GetComponent<Rigidbody2D>();
+        //carBody = GetComponent<Rigidbody2D>();
+        EA = FindObjectOfType(typeof(EnemyAppear)) as EnemyAppear;
     }
-   
+
 
     public override void CollectObservations()
     {
         //Agent positions
-        AddVectorObs(pos);
+        AddVectorObs(gameObject.transform.position); //pos
 
-        // Agent velocity
-        AddVectorObs(carBody.velocity);
+        //Enemies position
+
+        if (EA._instance.Count == 0 || cc.collisionflag == 1)
+        {
+            AddVectorObs(new Vector3(4f, -8f, 0f));
+            AddVectorObs(new Vector3(4f, -8f, 0f));
+        }
+        else if (EA._instance.Count == 1)
+            AddVectorObs(new Vector3(4f, -8f, 0f));
+
+
+        int count_cars = 0,count=0;
+        for (int i = 0; i < EA._instance.Count; i++)
+        {
+            if (EA._instance[i] != null)
+            {
+                count_cars += 1;
+            }
+        }
+
+        if (count_cars == 0 && EA._instance.Count > 1)
+        {
+            AddVectorObs(new Vector3(4f, -8f, 0f));
+            AddVectorObs(new Vector3(4f, -8f, 0f));
+        }
+        else if (count_cars == 1 && EA._instance.Count == 1)
+        {
+            AddVectorObs(EA._instance[0].transform.position);
+        }
+        else if (count_cars==0 && EA._instance.Count==1 )
+        {
+            AddVectorObs(new Vector3(4f, -8f, 0f));
+        }
+        else
+        {
+            for (int i = 0; i < EA._instance.Count; i++)
+            {
+                if (EA._instance[i] != null && count<2)
+                {
+                    AddVectorObs(EA._instance[i].transform.position);
+                    count += 1;
+                }
+            }
+            if(count==1)
+                AddVectorObs(new Vector3(4f, -8f, 0f));
+        }
+        
+        //// Agent velocity
+        //AddVectorObs(carBody.velocity);
 
     }
 
     public override void AgentReset()
     {
-        // Destory any Enemy Car if exists one
-        //enemy1.transform.position = pos_enemy1;
-        //enemy2.transform.position = pos_enemy2;
-        //enemy3.transform.position = pos_enemy3;
-
-        //Destroy(EA._instance);
-        //for (int i = 0; i < cc.E._instance.Capacity; i++)
-        //{
-        //    Destroy(cc.E._instance[i]);
-        //    cc.E._instance.RemoveAt(i);
-        //}
+        
         // Revert Position of car
         gameObject.transform.position = old_position;
         gameObject.transform.rotation = old_rotation;
@@ -110,6 +141,13 @@ public class myAgent : Agent
         {
             AddReward(0.2f);
             cc.ui.XReward();
+        }
+        
+        // wall collision
+        if(pos.x== -5f || pos.x == 3.8f)
+        {
+            AddReward(-1f);
+            cc.ui.hitsPenalty();
         }
     }
 }
