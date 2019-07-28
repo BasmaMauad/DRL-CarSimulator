@@ -38,7 +38,9 @@ PPO (Proximal Policy Optimization)
  
  ## Simulator:
  
- ![3d_car_for_gif](https://user-images.githubusercontent.com/33907411/62006491-6232d580-b141-11e9-887d-82ef414bc7e6.gif)
+ 3D 
+ ![3d_car_for_gif](https://user-images.githubusercontent.com/33907411/62006491-6232d580-b141-11e9-887d-82ef414bc7e6.gif) ![2d_car](https://user-images.githubusercontent.com/33907411/62006523-c5bd0300-b141-11e9-87ab-785547535d99.gif)
+
  
  
 
