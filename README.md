@@ -1,5 +1,8 @@
 # RL-car Simulator
 
+Deep Reinforcement Learning (PPO) car simulator using unity engine and python.
+
+
 ## Software
 
 * Windows10 (64bit)
