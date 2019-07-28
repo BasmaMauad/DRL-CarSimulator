@@ -38,10 +38,46 @@ PPO (Proximal Policy Optimization)
  
  ## Simulator:
  
- 3D 
- ![3d_car_for_gif](https://user-images.githubusercontent.com/33907411/62006491-6232d580-b141-11e9-887d-82ef414bc7e6.gif) ![2d_car](https://user-images.githubusercontent.com/33907411/62006523-c5bd0300-b141-11e9-87ab-785547535d99.gif)
-
+ ### 3D Model gif
  
+ ![3d_car_for_gif](https://user-images.githubusercontent.com/33907411/62006491-6232d580-b141-11e9-887d-82ef414bc7e6.gif)
+
+
+## Vector Observation states
+
+Opponent cars position
+agent car position
+
+## Actions
+
+The action of the vehicle is as follows.
+
+* Do nothing
+* move left
+* move right
+* move backward
+* move forward
+
+## Reward design 
+* -1 when agent collide the opponent cars
+* -1 when agent collide with road boundaries
+* 0.5 when agent moves forward
+* 0.2 when agent moves right or left 
+
+## Results 
+
+after 2 Hours training with PPO algorithm
+
+#### Reward
+
+![Phase2_reward](https://user-images.githubusercontent.com/33907411/62006624-62cc6b80-b143-11e9-8e67-68c2eecc7a2f.JPG)
+
+
+#### Losses
+
+![Phase2_losses](https://user-images.githubusercontent.com/33907411/62006638-94453700-b143-11e9-872e-58c6c91e916c.JPG)
+
+
  
 
 
